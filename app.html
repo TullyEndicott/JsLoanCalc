@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project by Tully Endicott</title>
+    <title>Loan Calc: A Coding Project by Tully Endicott</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,7 +30,7 @@
     <!--***************NAV Section *************************-->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/favicon/favicon-32x32.png" class="d-inline-block align-text-top" alt="Tully Endicott Logo" width="32" height="32">  APP NAME</a>
+            <a class="navbar-brand" href="#"><img src="img/favicon/favicon-32x32.png" class="d-inline-block align-text-top" alt="Tully Endicott Logo" width="32" height="32">  Loan Calc</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -47,7 +47,7 @@
                         <a class="nav-link" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"target="_blank" href="https://github.com/TullyEndicott/JsSiteTemplate">Git Repo</a>
+                        <a class="nav-link"target="_blank" href="https://github.com/TullyEndicott/JsLoanCalc">Git Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"target="_blank" href="#">About</a>
@@ -60,6 +60,20 @@
     <!--***************MAIN Section *************************-->
     <main class="flex-shrink-0"><!--This BS5 needed for sticky footer-->
         <div class="container">
+            <div class="row">
+                <div class="col col-md-4">
+
+                </div>
+                <div class="col col-md-8">
+
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table table-striped table-sm">
+                    <tbody id="results">
+                        <!-- Loan Calc results go here -->
+                    </tbody>
+                </table>
             
         </div>
 
@@ -86,6 +100,28 @@
             </div>
         </div>
     </footer>
+    <!-- Template tag for display Loan Calc at https://github.com/orgs/CoderFoundry/repositories-->
+    <!--template tg allowss entry of html but it is not rendered xcept through JS-->
+    <template id="lcHeader">
+        <tr>
+            <th>Month</th>
+            <th>Payment</th>
+            <th>Principal</th>
+            <th>Interest</th>
+            <th>Total Interest</th>
+            <th>Balance</th>
+        </tr>
+    </template>
+    <template id="lcTemplate">
+        <tr>
+            <td></td> <!-- index 0-->
+            <td></td> <!-- index 1-->
+            <td></td> <!-- index 2-->
+            <td></td> <!-- index 3-->
+            <td></td> <!-- index 4-->
+            <td></td> <!-- index 5-->
+        </tr>
+    </template>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
