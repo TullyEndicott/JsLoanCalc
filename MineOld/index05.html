@@ -1,0 +1,190 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Mortgage Calculator BS5</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+                ['Mushrooms', 3],
+                ['Onions', 1],
+                ['Olives', 1],
+                ['Zucchini', 1],
+                ['Pepperoni', 2]
+            ]);
+
+            // Set chart options
+            var options = {
+                'title': 'How Much Pizza I Ate Last Night',
+                'width': 500,
+                'height': 300
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+    <!---->
+    <link rel="stylesheet" href="css/loanCalcStyle.css">
+
+</head>
+
+<body>
+    <!-- Jumbotron here-->
+    <div id="jumbo" class="mt-2 mb-4 rounded-3 text-center">
+        <div class="container py-5">
+            <div class="row justify-content-md-center">
+                <h1 class="">Mortgage Loan Calculator</h1>
+            </div>
+
+
+            <hr class="my-4">
+            <p>
+                Added content
+            </p>
+        </div>
+    </div>
+
+
+
+    <main class="flex-shrink-0">
+        <div class="container mb-5">
+
+            <div class="row">
+                <div class="col-2">
+                    <form action="" method="" name="loan_form" id="loan_form">
+                        <div class="mb-3">
+                            <h6>Home Information</h6>
+                        </div>
+                        <label for="amount" class="form-label">Home Purchase Price</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control" id="loanAmount" placeholder="250,000"
+                                onchange="valAmount()" required autocomplete="off">
+                        </div>
+                        <label for="downPay" class="form-label">Down Payment</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control" id="downPay" placeholder="0" onchange="calcDownPay()" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <h6>Loan Information</h6>
+                        </div>
+                        <label for="rate" class="form-label">Interest Rate</label>
+                        <div class="input-group mb-3">
+                            <input type="number" min="1" class="form-control" id="rate" placeholder="4.5"
+                                onchange="valInt()" required>
+                            <span class="input-group-text" id="basic-addon2">%</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="months" class="form-label">Loan Term (Months)</label>
+                            <input type="number" min="1" class="form-control" id="months" placeholder="360"
+                                onchange="valMonths()" required>
+                        </div>
+
+                        <div class="mt-5 mx-auto" style="width: 200px;">
+                            <button type="button" id="calcBtn">Calculate</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-10 border border-dark">
+                    <div class="mt-3 sticky-sm-top border border-dark">
+                        Stick to the top on viewports sized SM (small) or wider
+                        <p id="total">
+                            <!--<h2 id=" total"></h2>-->
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a href="#chart" class="nav-link active" data-bs-toggle="tab">Loan Payoff Schedule</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#table" class="nav-link" data-bs-toggle="tab">Amortization Schedule</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="chart">
+                                <h4 class="mt-2">Loan Payoff</h4>
+                                <p>Chart goes here</p>
+                                <!--Div that will hold the bar chart-->
+                                <div id="chart_div"></div>
+
+                            </div>
+                            <div class="tab-pane fade" id="table">
+                                <h4 class="mt-2">Amortization Table</h4>
+                                <table id="amoratTbl" class="fixed_header">
+                                    <!-- insert table rows -->
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+        </div>
+
+    </main>
+
+    <!-- Popper for tool tip JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+    </script>
+    <!-- chartJS
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"
+        integrityS="sha256-qoN08nWXsFH+S9CtIq99e5yzYHioRHtNB9t2qy1MSmc=" crossorigin="anonymous">
+    </script>-->
+
+    <script src="js/script05.js"></script>
+
+    <!-- Tool tip -->
+    <script>
+        //  $(function () {
+        //      $('[data-toggle="tooltip"]').tooltip()
+        //  })
+    </script>
+    <!--================================-->
+</body>
+
+</html>

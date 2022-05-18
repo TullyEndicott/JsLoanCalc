@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Loan Calculator - Brian Veitch</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+       <div id="container">
+           <h1>Loan installment Calculator</h1>
+
+           <div id="loan_src"> <!--loan form here-->
+                <form action="" name="loan_form" id="loan_form">
+                    <table style="margin: 10px;">
+                        <tr>
+                            <td>Loan Amount</td>
+                            <td><input type="text" name="loan_amt" size="10" value=""/></td>
+                        </tr>
+                        <tr>
+                            <td>Number of Months</td>
+                            <td><input type="text" name="months" size="10" value=""/></td>
+                        </tr>
+                        <tr>
+                            <td>Annual Interest Rate: <br/><span style="font-size:80%">(ex. 4.5% = 4.5)</span></td>
+                            <td><input type="text" name="rate" size="10" value=""/></td>
+                        </tr>
+
+                        <tr>
+                            <td>Extra Monthly Payment</td>
+                            <td><input type="text" id="extra" name="extra" size="10" value=""/></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="button" onclick="validate()" value="Calculate">
+                            </td>
+                            <td>
+                                <input type="button" onclick="startOver()" value="Start Over">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+           </div>
+
+           <div id="loan_info"> <!--loan info here-->
+                Loan Info
+            </div>
+
+             <div id="table_header"> <!--table header here-->
+
+                <table cellpadding="15" border="1px">
+                    <tr>
+                        <td class="header30">Pmt</td>
+                        <td class="header60">Payment</td>
+                        <td class="header60">Principle</td>
+                        <td class="header60">Interest</td>
+                        <td class="header85">Interest Paid</td>
+                        <td class="header70">Balance</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="table"> <!--table here-->
+
+            </div>
+
+
+       </div>
+
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

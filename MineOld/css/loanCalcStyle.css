@@ -1,0 +1,50 @@
+   
+body {
+    background-color: rgb(241, 247, 237);
+    font-family: 'Trebuchet MS';
+}
+#jumbo{
+    /*background-image:url("images/mansion_mark-marazUnsplash1280x600.jpg")*/
+    background-color: rgb(112,173,76);
+    color:rgb(241, 247, 237)
+}
+
+#blue{
+    background: cornflowerblue;
+}
+
+main.container {
+    padding: 60px 15px 0;
+}
+
+textarea {
+    width: 100% !important;
+  }
+#amoratTbl {
+    width: 100% !important;
+}
+
+.fixed_header {
+width: 400px;
+table-layout: fixed;
+border-collapse: collapse;
+}
+.fixed_header tbody {
+display: block;
+width: 100%;
+overflow: auto;
+height: 400px;
+}
+.fixed_header thead tr {
+display: block;
+}
+.fixed_header thead {
+background: rgb(112,173,76);
+color: #fff;
+}
+.fixed_header th,
+.fixed_header td {
+padding: 5px;
+text-align: left;
+width: 200px;
+}
