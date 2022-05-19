@@ -1,6 +1,6 @@
 
 let amarat = [
-    {currMon: "", monInterest: "", principal: "", rate: "", remBalance: ""},
+    {month: "", payment: "", principal: "", monInterest: "", totInterest: "", remBalance: ""},
 ];
 
 const btnCalc = document.getElementById("btnCalc");
@@ -19,6 +19,10 @@ function  startOver(){
     
     document.getElementById("loan_info").innerHTML="";
     document.getElementById("table").innerHTML="";
+
+    let tableBody = getElementById("results");
+    let templateRow = document.getElementById("lcTemplate");
+    tableBody.innerHTML = ""; //Clear the table
 }
 
 //validate inputs
@@ -54,7 +58,7 @@ function calculate(loanAmt, months, termInterest){
     let  total = 0;
 
     let i = termInterest/100;
-    var monthly_payment = loanAmt*(i/12)*Math.pow((1+i/12), months) / (Math.pow((1+i/12), months) - 1);
+    let payment = loanAmt*(i/12)*Math.pow((1+i/12), months) / (Math.pow((1+i/12), months) - 1);
 
     var info = ""; // a really big string holding a table
 
@@ -136,6 +140,36 @@ function calculate(loanAmt, months, termInterest){
 
     document.getElementById("table").innerHTML = table;
 }
+//*******************************************************************************new */
+//Get amarat object and build table
+function display(amarat){
+
+    let tableBody = document.getElementById("results"); //the table
+    //get the row from the template in app.html
+    let templateRow = document.getElementById("lcTemplate");
+
+    //clear table
+    tableBody.innerHTML = "";
+    
+    for(let index = 0; index <= Object.keys(amarat).length - 1; index++){
+
+        let tableRow = document.importNode(templateRow.content, true); //'true' gets everything in app.html template
+
+        let rowCols = tableRow.querySelectorAll("td"); //rowCols init as array
+
+        rowCols[0].textContent = amarat.month;
+        rowCols[1].textContent = amarat.payment;
+        rowCols[2].textContent = amarat.principal;
+        rowCols[3].textContent = amarat.monInterest;
+        rowCols[4].textContent = amarat.totInterest;
+        rowCols[5].textContent = amarat.payment;
+
+        tableBody.appendChild(tableRow);
+
+    }
+
+}
+//******************************************* end new */
 
 function round2(num, dec){
     return (Math.round(num*Math.pow(10, dec))/Math.pow(10, dec)).toFixed(dec);
