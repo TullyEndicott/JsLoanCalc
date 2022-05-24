@@ -26,7 +26,7 @@ function  startOver(){
 }
 
 //validate inputs
-function validate(){
+function getValues(){
     var loanAmt = document.loanForm.loanAmt.value; //float
     var months = document.loanForm.months.value; //int
     var termInterest = document.loanForm.termInterest.value; //float
@@ -106,7 +106,7 @@ function calculate(loanAmt, months, termInterest){
         var towards_interest = 0;
 
 
-        monthly_payment = monthly_payment;
+        monthly_payment = payment;
 
        while(current_balance > 0){
             //create rows
