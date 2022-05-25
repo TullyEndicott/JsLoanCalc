@@ -60,44 +60,50 @@
     <!--***************MAIN Section *************************-->
     <main class="flex-shrink-0"><!--This BS5 needed for sticky footer-->
         <div class="container mt-4">
-                <div class="row border border-3 border-dark d-flex justify-content-between">
-                    <div class="col-4 pt-2 border border-3 border-dark">
+                <div class="row d-flex justify-content-between d-grid g-3">
+                    <div class="col-12 col-md-4 pt-2 border border-3 border-dark">
                         <form action="" name="loanForm" class="row">
                             <div class="row">
                                 <label for="loanAmt" class="col-6 col-form-label">Loan Amount:</label>
                                 <div class="col-6">
-                                    <input id="loanAmt" type="number" class="form-control" placeholder="25,000" value=25000 aria-label = "Loan Amount">
+                                    <input id="loanAmt" type="text" class="form-control" placeholder="25,000" value=25,000 aria-label = "Loan Amount">
                                 </div>
                             </div>
                             <div class="row">
-                                <label for="term" class="col-6 col-form-label">Term (Months):</label>
+                                <label for="months" class="col-6 col-form-label">Term (Months):</label>
                                 <div class="col-6">
-                                    <input id="term" type="number" class="form-control" placeholder="60" value=60 aria-label = "Number of months">
+                                    <input id="months" type="number" class="form-control" placeholder="60" value=60 aria-label = "Number of months">
                                 </div>
     
                             </div>
                             <div class="row">
                                 <label for="termInterest" class="col-6 col-form-label">Interest:</label> 
                                 <div class="col-6">
-                                    <input id="termInterest" type="number" class="form-control" placeholder="4.5" value=4.5 aria-label = " Term Interest">
+                                    <input id="termInterest" type="text" class="form-control" placeholder="4.5%" value=4.5% aria-label = " Term Interest">
                             </div>                           
     
                             </div>
                             <div class="row">
-                                <div class="col-12 d-flex justify-content-end pt-2">
-                                    <button id="btnCalc" type="button" class="btn btn-dark btn-lg">Calculate</button>
+                                <div class="col-6 d-flex align-items-start align-self-end pt-2">
+                                    <button id="btnReset" type="button" class="btn btn-danger btn-sm">Reset</button>
                                 </div>
+                                <div class="col-6 d-flex align-items-end align-self-end pt-2">
+                                    <button id="btnCalc" type="button" class="btn btn-success btn-lg">Calculate</button>
+
+                                    <!--Add vertical content end-->
+                                </div>
+
                             </div>
     
                         </form>
     
                     </div>
-                    <div class="col-8 border border-3 border-dark">
+                    <div class="col-12 col-md-8 border border-3 border-dark">
                         <div class="row-12 d-flex justify-content-center pt-2">
                             <h2>Your Monthly Payments</h2>
                         </div>
-                        <div id="payment" class="row-12 d-flex justify-content-center pt-1">
-                            <h2>$$$$$$$$$</h2>
+                        <div class="row-12 d-flex justify-content-center pt-1">
+                            <h2 id="payment" ></h2>
                         </div>
                         <div class="row">
                             <div class="col-4  d-flex justify-content-start">
@@ -106,7 +112,7 @@
                             <div class="col-4">
                             </div>
                             <div class="col-4 d-flex justify-content-start">
-                                <h4 id="totPrin">$222222</h4>
+                                <h4 id="totPrin"></h4>
                             </div>
                         </div>
                         <div class="row">
@@ -116,7 +122,7 @@
                             <div class="col-4">
                             </div>
                             <div class="col-4 d-flex justify-content-start">
-                                <h4 id="totInt">$222222</h4>
+                                <h4 id="totInt"></h4>
                             </div>
                         </div>
                         <div class="row">
@@ -126,19 +132,23 @@
                             <div class="col-4">
                             </div>
                             <div class="col-4 d-flex justify-content-start">
-                                <h4 id="totCost">$222222</h4>
+                                <h4 id="totCost"></h4>
                             </div>
                         </div>
     
                     </div>
+
+                    <div class=" col-12 table-responsive mt-1">
+                        <table class="table table-bordered table-striped table-sm">
+                            <tbody id="results">
+                                <!-- Loan Calc results go here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
                 </div>
 
-            <div class="table-responsive">
-                <table class="table table table-striped table-sm">
-                    <tbody id="results">
-                        <!-- Loan Calc results go here -->
-                    </tbody>
-                </table>
+
             
         </div>
 
@@ -169,12 +179,12 @@
     <!--template tg allowss entry of html but it is not rendered xcept through JS-->
     <template id="lcHeader">
         <tr>
-            <th>Month</th>
-            <th>Payment</th>
-            <th>Principal</th>
-            <th>Interest</th>
-            <th>Total Interest</th>
-            <th>Balance</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
     </template>
     <template id="lcTemplate">
@@ -191,7 +201,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
-    <script src="js/site.js"></script>
+    <script src="js/sitenew.js"></script>
 </body>
 
 </html>

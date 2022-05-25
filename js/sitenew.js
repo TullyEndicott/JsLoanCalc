@@ -1,11 +1,13 @@
-let amarat = [
+/*let amarat = [
     {month: "", payment: "", principal: "", monInterest: "", totInterest: "", remBalance: ""},
-];
+];*/
+
+let amarat = [];  //amarat is thr array, temp is the object
 
 const btnCalc = document.getElementById("btnCalc");
 
 let table = document.querySelector("results");
-let data2 = Object.keys(amarat[0]);
+//let data2 = Object.keys(amarat);
 //let data4 = Object.keys(headings[0]);
 
 
@@ -13,10 +15,11 @@ let data2 = Object.keys(amarat[0]);
 
 //validate inputs
 function getValues(){
-    var loanAmt = document.loanForm.loanAmt.value; //float
+    var loanAmt = document.loanForm.loanAmt.value; //text
     var months = document.loanForm.months.value; //int
-    var termInterest = document.loanForm.termInterest.value; //float
- 
+    var termInterest = document.loanForm.termInterest.value; //text
+    loanAmt = loanAmt.replace(/[^\d.-]/g, '');
+    termInterest = termInterest.replace(/[^\d.-]/g, '');
 
     if (loanAmt <= 0 || isNaN(Number(loanAmt))){ //true if NaN ck for not a float
         alert("Please enter a valid loan amount - ex. 250000");
@@ -36,7 +39,7 @@ function getValues(){
     else{
        // alert("Validation complete");
         //calculate(parseFloat(loanAmt), parseInt(months), parseFloat(termInterest));
-        loanAmt = parseFloat(loanAmt);
+        loanAmt = parseFloat(loanAmt).toFixed(2);
         months = parseInt(months);
         termInterest = parseFloat(termInterest);
 
@@ -80,8 +83,8 @@ function calculate(loanAmt, months, i){ //25000, 60, 4.5
         temp.principal = towardsBalance.toFixed(2);
         temp.monthlyInterest = towardsInterest.toFixed(2); 
         temp.totInterest = totalInterest.toFixed(2);
-        temp.remBalance = currentBalance.toFixed(2);
-        temp.rate = rate;// ex. 4.5
+        temp.remBalance = Math.abs(currentBalance.toFixed(2));
+        //temp.rate = i;// ex. 4.5
 
         insertObject(amarat, temp);
     }
@@ -97,33 +100,53 @@ function calculate(loanAmt, months, i){ //25000, 60, 4.5
 function displayData(amarat, loanAmt){
 
     let tableBody = document.getElementById("results"); //the table
+    //get the header row template
+    let templateHeader = document.getElementById("lcHeader")
     //get the row from the template in app.html
     let templateRow = document.getElementById("lcTemplate");
 
-    let payment = amarat[0].payment.value;
-    let totalInterest = amarat[amarat.length-1].totInterest.value;
-    let totCost = loanAmt + totalInterest;
+    let payment = amarat[0].payment;
+    let totalInterest = amarat[amarat.length-1].totInterest;
+    //let totalInterest = amarat[amarat.length-1].totInterest;
+    let totCost = parseFloat(loanAmt) + parseFloat(totalInterest);
 
-    document.querySelector("payment").innerHTML.value = `$${payment}`
-    document.querySelector("totPrin").innerHTML.value = `$${loanAmt}`
-    cocument.querySelector("totInt").innerHTML.value = `$${totalInterest}`
-    document.querySelector("totCost").innerHTML.value = `$${totCost}`
+    //document.getElementById("payment").querySelector.innerHTML = `$${payment}`;
+   // document.getElementById("totPrin").querySelector.innerHTML = `$${loanAmt}`;
+   // document.getElementById("totInt").querySelector.innerHTML = `$${totalInterest}`;
+    //document.getElementById("totCost").querySelector.innerHTML = `$${totCost}`;
+
+    document.getElementById("payment").innerHTML = `$${payment}`;
+    document.getElementById("totPrin").innerHTML = `$${parseFloat(loanAmt).toFixed(2)}`;
+    document.getElementById("totInt").innerHTML = `$${totalInterest}`;
+    document.getElementById("totCost").innerHTML = `$${totCost}`;
 
     //clear table
     tableBody.innerHTML = "";
-    
+
+    //Print the header
+    let tableRow = document.importNode(templateHeader.content, true); //'true' gets everything in app.html template
+    let rowCols = tableRow.querySelectorAll("th"); //rowCols init as array
+    rowCols[0].textContent = "Month";
+    rowCols[1].textContent = "Payment";
+    rowCols[2].textContent = "Principal";
+    rowCols[3].textContent = "Interest";
+    rowCols[4].textContent = "Total Interest";
+    rowCols[5].textContent = "Balance";
+    tableBody.appendChild(tableRow);
+
+    //Print the table
     for(let index = 0; index <= Object.keys(amarat).length - 1; index++){
 
         let tableRow = document.importNode(templateRow.content, true); //'true' gets everything in app.html template
 
         let rowCols = tableRow.querySelectorAll("td"); //rowCols init as array
 
-        rowCols[0].textContent = amarat.month;
-        rowCols[1].textContent = amarat.payment;
-        rowCols[2].textContent = amarat.principal;
-        rowCols[3].textContent = amarat.monInterest;
-        rowCols[4].textContent = amarat.totInterest;
-        rowCols[5].textContent = amarat.payment;
+        rowCols[0].textContent = amarat[index].currMon;
+        rowCols[1].textContent = amarat[index].payment;
+        rowCols[2].textContent = amarat[index].principal;
+        rowCols[3].textContent = amarat[index].monthlyInterest;
+        rowCols[4].textContent = amarat[index].totInterest;
+        rowCols[5].textContent = amarat[index].remBalance;
 
         tableBody.appendChild(tableRow);
 
@@ -149,3 +172,5 @@ function  startOver(){
 
     amarat.length = 0 //reset amarat object
 }
+
+btnCalc.addEventListener("click", getValues);
