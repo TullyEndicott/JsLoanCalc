@@ -70,3 +70,13 @@ code[class*="language-"],
         word-break: break-all;
         word-wrap: break-word;
 }
+
+.table-bordered {
+    
+      border: 1px solid black !important;
+    
+  }
+
+  th, td {
+    border: 2px solid black !important; 
+  }
